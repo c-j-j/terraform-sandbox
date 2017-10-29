@@ -11,6 +11,14 @@ output "elb_dns_name" {
   value = "${aws_elb.terraform-example.dns_name}"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "terraform-remote-state-sandbox"
+    key    = "terraform.tfstate"
+    region = "eu-west-1"
+  }
+}
+
 resource "aws_security_group" "instance" {
   name = "terraform-example-instance"
 
